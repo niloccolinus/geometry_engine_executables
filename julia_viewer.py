@@ -1,5 +1,5 @@
 import pygame
-import sys
+import sys, getopt
 import os
 
 # Add the parent directory to the path to avoid ModuleNotFoundError
@@ -8,15 +8,15 @@ sys.path.append(project_root)
 
 from geometry_engine_librairie.Mathy.renderer import Renderer
 
-def julia(c: complex, z: complex, max_iter: int) -> bool:
+def julia(c: complex, z: complex, max_iter: int) -> int:
     """
     Returns True if the sequence zn remains bounded (|zn| <= 2 after max_iter iterations).
     """
-    for _ in range(max_iter):
+    for _, i in enumerate(range(max_iter)):
         if abs(z) > 2:  # abs() is used to calculate the module
-            return False  # The sequence diverges
+            return i # The sequence diverges
         z = z * z + c
-    return True  # The sequence remains bounded
+    return max_iter  # The sequence is bounded
 
 
 def map_pixel_to_complex(x, y, width, height, zoom=1.0, offset=(0.0, 0.0)) -> complex:
@@ -28,6 +28,18 @@ def map_pixel_to_complex(x, y, width, height, zoom=1.0, offset=(0.0, 0.0)) -> co
     im = (y - height / 2) / (0.5 * zoom * height) + offset[1]
     return complex(re, im)
 
+def get_color(iteration: int, max_iter: int) -> tuple:
+    """
+    Returns a color based on the number of iterations.
+    """
+    # Normalized index to range [0, 1]
+    t = iteration / max_iter
+    # Calculate the RGB values
+    red = int(255 * (1 - t))
+    green = int(255 * t)
+    blue = int(255 * (0.5 - abs(t - 0.5)))
+    # Return the color as an RGB tuple
+    return (red, green, blue)
 
 def render_julia(renderer: Renderer, c: complex, max_iter=100, zoom=1.0, offset=(0.0, 0.0)):
     """
@@ -37,18 +49,28 @@ def render_julia(renderer: Renderer, c: complex, max_iter=100, zoom=1.0, offset=
     for x in range(width):
         for y in range(height):
             z = map_pixel_to_complex(x, y, width, height, zoom, offset)
-            is_bounded = julia(c, z, max_iter)
-            color = (0, 0, 0) if is_bounded else (255, 255, 255)
+            iterations = julia(c, z, max_iter)
+            is_bounded = iterations == max_iter
+            # Get the color based on the number of iterations
+            color = get_color(iterations, max_iter) if not is_bounded else (0, 0, 0)
             renderer.draw_point(x, y, color=color)
     renderer.update()
-
 
 def main():
     width, height = 800, 600
     renderer = Renderer(width, height, "Julia Set Viewer", bg_color=(255, 255, 255))
 
-    c = complex(-0.7, 0.27015)  # A classic value for a nice Julia set
-    max_iter = 100
+    c_list = [ # List of complex numbers for different Julia sets
+        complex(-0.7, 0.27015), # This is the default value
+        complex(-0.123, 0.745),
+        complex(0.355, 0.355),
+        complex(-0.70176, -0.3842),
+        complex(-0.4, 0.6)
+    ]
+    
+    c = c_list[int(sys.argv[1])] if len(sys.argv) > 1 else c_list[0]
+
+    max_iter = 30
     zoom = 1.0
     offset = (0.0, 0.0)
 

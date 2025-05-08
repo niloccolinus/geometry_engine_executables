@@ -1,7 +1,7 @@
 import sys
 
 
-from geometry_engine_librairie.Mathy.renderer import Renderer
+from Mathy import Renderer
 
 
 def julia(c: complex, z: complex, max_iter: int) -> int:

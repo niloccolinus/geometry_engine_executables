@@ -3,7 +3,7 @@ import os
 import math
 
 
-from geometry_engine_librairie.Mathy.renderer import Renderer
+from Mathy import Renderer
 
 
 # --- Utility functions ---

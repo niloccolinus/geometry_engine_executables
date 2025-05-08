@@ -1,12 +1,8 @@
-import pygame
-import sys, getopt
-import os
+import sys
 
-# Add the parent directory to the path to avoid ModuleNotFoundError
-project_root = os.path.abspath(os.path.join(os.path.dirname(__file__), '..'))
-sys.path.append(project_root)
 
 from geometry_engine_librairie.Mathy.renderer import Renderer
+
 
 def julia(c: complex, z: complex, max_iter: int) -> int:
     """

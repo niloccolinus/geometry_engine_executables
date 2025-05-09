@@ -1,5 +1,3 @@
-import sys
-import os
 import math
 
 
@@ -13,9 +11,11 @@ def distance(p1, p2):
     dy = p1[1] - p2[1]
     return math.sqrt(dx**2 + dy**2)
 
+
 def midpoint(p1, p2):
     """Return the midpoint between two 2D points."""
     return ((p1[0] + p2[0]) / 2, (p1[1] + p2[1]) / 2)
+
 
 def main():
     # Define points
@@ -40,7 +40,9 @@ def main():
     offset = (100, 400)
 
     def wp_to_screen(p):
-        """Convert a 2D point (x, y) from world coordinates to screen coordinates."""
+        """
+        Convert a 2D point (x, y) from world coordinates to screen coordinates.
+        """
         return (int(p[0] * scale + offset[0]), int(-p[1] * scale + offset[1]))
 
     def wc_to_screen(x, y):
@@ -60,16 +62,36 @@ def main():
                 screen_y = screen_pos[1]
 
                 if x == 0 or y == 0:  # Draw the x and y axes in black
-                    renderer.draw_point(screen_x, screen_y, color=(0, 0, 0), radius=2)
+                    renderer.draw_point(
+                        screen_x, 
+                        screen_y, 
+                        color=(0, 0, 0), 
+                        radius=2
+                    )
                 else:
-                    renderer.draw_point(screen_x, screen_y, color=(230, 230, 230), radius=2)
+                    renderer.draw_point(
+                        screen_x, 
+                        screen_y, 
+                        color=(230, 230, 230), 
+                        radius=2
+                    )
 
         # Draw the segment and circle
-        renderer.draw_segment(wp_to_screen(A), wp_to_screen(B), color=(0, 0, 0), width=2)
-        renderer.draw_circle(wp_to_screen(D), radius * scale, color=(0, 150, 255), width=2)
+        renderer.draw_segment(
+            wp_to_screen(A), 
+            wp_to_screen(B), 
+            color=(0, 0, 0), 
+            width=2
+        )
+        renderer.draw_circle(
+            wp_to_screen(D), 
+            radius * scale, 
+            color=(0, 150, 255), 
+            width=2
+        )
 
         # Draw points A, B, and C
-        for label, pt in zip("ABC", [A, B, C]):  # Combine labels with points (A, B, C)
+        for label, pt in zip("ABC", [A, B, C]):  # Combine labels with points
             x, y = wp_to_screen(pt)
             renderer.draw_point(x, y, color=(0, 0, 255), radius=4)
             renderer.draw_text(label, wp_to_screen(pt), font_size=24)
@@ -78,6 +100,7 @@ def main():
         renderer.clock.tick(60)
 
     renderer.quit()
+
 
 if __name__ == "__main__":
     main()

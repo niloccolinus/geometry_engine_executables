@@ -1,13 +1,14 @@
 import sys
+import colorsys  # To use HSV colors
 from Mathy import Renderer
 
 
 def julia(c: complex, z: complex, max_iter: int) -> int:
     """
-    Returns True if the sequence zn remains bounded.
+    Return the number of iterations before divergence, or max_iter if bounded.
     |zn| <= 2 after max_iter iterations.
     """
-    for _, i in enumerate(range(max_iter)):
+    for i in range(max_iter):
         if abs(z) > 2:  # abs() is used to calculate the module
             return i  # The sequence diverges
         z = z * z + c
@@ -31,12 +32,11 @@ def get_color(iteration: int, max_iter: int) -> tuple:
     """
     # Normalized index to range [0, 1]
     t = iteration / max_iter
-    # Calculate the RGB values
-    red = int(255 * (1 - t))
-    green = int(255 * t)
-    blue = int(255 * (0.5 - abs(t - 0.5)))
-    # Return the color as an RGB tuple
-    return (red, green, blue)
+    # Hue from 0 to 1, full saturation and brightness
+    hue = t  # shift for better contrast
+    hue = hue % 1.0  # wrap around
+    r, g, b = colorsys.hsv_to_rgb(hue, 1.0, 1.0)
+    return (int(r * 255), int(g * 255), int(b * 255))
 
 
 def render_julia(renderer: Renderer,

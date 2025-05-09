@@ -1,6 +1,6 @@
 import math
 
-from Mathy import Renderer, Triangle
+from Mathy import Renderer, Triangle, Vector2
 
 
 # --- Utility functions ---
@@ -37,6 +37,18 @@ def main():
     triangle = Triangle(A, B, C)
     is_right = triangle.right_angled()
     print(f"2. Triangle ABC is right: {is_right}")
+
+    # Question 3
+    # Bisector of angle CDB
+    vec_DC = Vector2(C[0] - D[0], C[1] - D[1]).normalize()
+    vec_DB = Vector2(B[0] - D[0], B[1] - D[1]).normalize()
+    bisector = vec_DC.add(vec_DB).normalize()
+
+    # Point E lies along the bisector, at a distance equal to the radius
+    E_vector = Vector2(D[0], D[1]).add(bisector.multiply_by_scalar(radius))
+    E = (E_vector.x, E_vector.y)
+    length_DE = distance(D, E)
+    print(f"3. Length of segment DE: {length_DE:.2f}")
 
     # Display using Renderer
     width, height = 800, 600
@@ -105,11 +117,24 @@ def main():
             width=2
         )
 
-        # Draw points A, B, and C
-        for label, pt in zip("ABC", [A, B, C]):  # Combine labels with points
+        # Draw points A, B, C and D (blue)
+        for label, pt in zip("ABCD", [A, B, C, D]):
             x, y = wp_to_screen(pt)
             renderer.draw_point(x, y, color=(0, 0, 255), radius=4)
-            renderer.draw_text(label, wp_to_screen(pt), font_size=24)
+            renderer.draw_text(label, (x + 5, y - 20), font_size=24)
+
+        # Draw point E (red)
+        e_x, e_y = wp_to_screen(E)
+        renderer.draw_point(e_x, e_y, color=(255, 0, 0), radius=4)
+        renderer.draw_text("E", (e_x + 5, e_y - 20), font_size=24)
+
+        # Draw segment DE (red)
+        renderer.draw_segment(
+            wp_to_screen(D),
+            wp_to_screen(E),
+            color=(255, 0, 0),
+            width=2
+        )
 
         renderer.update()
         renderer.clock.tick(60)

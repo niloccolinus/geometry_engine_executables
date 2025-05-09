@@ -1,7 +1,6 @@
 import math
 
-
-from Mathy import Renderer
+from Mathy import Renderer, Triangle
 
 
 # --- Utility functions ---
@@ -28,9 +27,16 @@ def main():
     radius = distance(A, B) / 2  # Radius is half the distance between A and B
     dist_C = distance(D, C)  # Distance from D to C
 
+    # --- Question 1 ---
     # Check if C lies on the circle
     on_circle = dist_C == radius
     print(f"1. C belongs to the circle of diameter AB: {on_circle}")
+
+    # --- Question 2 ---
+    # Using the Pythagorean theorem to verify that triangle ABC is right-angled
+    triangle = Triangle(A, B, C)
+    is_right = triangle.right_angled()
+    print(f"2. Triangle ABC is right: {is_right}")
 
     # Display using Renderer
     width, height = 800, 600
@@ -63,30 +69,39 @@ def main():
 
                 if x == 0 or y == 0:  # Draw the x and y axes in black
                     renderer.draw_point(
-                        screen_x, 
-                        screen_y, 
-                        color=(0, 0, 0), 
+                        screen_x,
+                        screen_y,
+                        color=(0, 0, 0),
                         radius=2
                     )
                 else:
                     renderer.draw_point(
-                        screen_x, 
-                        screen_y, 
-                        color=(230, 230, 230), 
+                        screen_x,
+                        screen_y,
+                        color=(230, 230, 230),
                         radius=2
                     )
 
         # Draw the segment and circle
         renderer.draw_segment(
-            wp_to_screen(A), 
-            wp_to_screen(B), 
-            color=(0, 0, 0), 
+            wp_to_screen(A),
+            wp_to_screen(B),
+            color=(0, 0, 0),
             width=2
         )
         renderer.draw_circle(
-            wp_to_screen(D), 
-            radius * scale, 
-            color=(0, 150, 255), 
+            wp_to_screen(D),
+            radius * scale,
+            color=(0, 150, 255),
+            width=2
+        )
+
+        # Draw triangle ABC
+        renderer.draw_triangle(
+            wp_to_screen(A),
+            wp_to_screen(B),
+            wp_to_screen(C),
+            color=(0, 0, 0),
             width=2
         )
 

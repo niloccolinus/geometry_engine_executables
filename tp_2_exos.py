@@ -38,7 +38,7 @@ def main():
     is_right = triangle.right_angled()
     print(f"2. Triangle ABC is right: {is_right}")
 
-    # Question 3
+    # --- Question 3 ---
     # Bisector of angle CDB
     vec_DC = Vector2(C[0] - D[0], C[1] - D[1]).normalize()
     vec_DB = Vector2(B[0] - D[0], B[1] - D[1]).normalize()
@@ -50,9 +50,21 @@ def main():
     length_DE = distance(D, E)
     print(f"3. Length of segment DE: {length_DE:.2f}")
 
+    # --- Question 4 ---
+    # Point F is the second intersection of the circle C2 with the bisector
+    F_vector = Vector2(D[0], D[1]).add(bisector.multiply_by_scalar(2 * radius))
+    F = (F_vector.x, F_vector.y)
+    length_DF = distance(D, F)
+    print(f"4. Length of segment DF: {length_DF:.2f}")
+
     # Display using Renderer
     width, height = 800, 600
-    renderer = Renderer(width, height, "TP 2", bg_color=(255, 255, 255))
+    renderer = Renderer(
+        width, 
+        height, 
+        "TP 2 - Visualization", 
+        bg_color=(255, 255, 255)
+    )
 
     scale = 60
     offset = (100, 400)
@@ -94,18 +106,42 @@ def main():
                         radius=2
                     )
 
-        # Draw the segment and circle
+        # Draw segment AB
         renderer.draw_segment(
             wp_to_screen(A),
             wp_to_screen(B),
             color=(0, 0, 0),
             width=2
         )
+
+        # Draw circle C1
         renderer.draw_circle(
             wp_to_screen(D),
             radius * scale,
             color=(0, 150, 255),
             width=2
+        )
+        # Label for circle C1
+        d_x, d_y = wp_to_screen(D)
+        renderer.draw_text(
+            "C1",
+            (d_x + 0.7 * radius * scale, d_y + 0.7 * radius * scale),
+            font_size=18
+        )
+
+        # Draw circle C2
+        renderer.draw_circle(
+            wp_to_screen(E),
+            radius * scale,
+            color=(0, 150, 255),
+            width=2
+        )
+        # Label for circle C2
+        e_x, e_y = wp_to_screen(E)
+        renderer.draw_text(
+            "C2",
+            (e_x + 0.7 * radius * scale, e_y + 0.7 * radius * scale),
+            font_size=18
         )
 
         # Draw triangle ABC
@@ -128,10 +164,18 @@ def main():
         renderer.draw_point(e_x, e_y, color=(255, 0, 0), radius=4)
         renderer.draw_text("E", (e_x + 5, e_y - 20), font_size=24)
 
-        # Draw segment DE (red)
+        # Draw point F (green)
+        f_x, f_y = wp_to_screen(F)
+        renderer.draw_point(f_x, f_y, color=(0, 255, 0), radius=4)
+        renderer.draw_text("F", (f_x + 5, f_y - 20), font_size=24)
+
+        # Extend the bisector far enough in its direction
+        long_vector = bisector.multiply_by_scalar(100)
+        delta_end = Vector2(D[0], D[1]).add(long_vector)
+
         renderer.draw_segment(
             wp_to_screen(D),
-            wp_to_screen(E),
+            wp_to_screen((delta_end.x, delta_end.y)),
             color=(255, 0, 0),
             width=2
         )

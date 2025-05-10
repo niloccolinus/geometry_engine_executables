@@ -18,7 +18,7 @@ def midpoint(p1, p2):
 
 
 def main():
-    """Main function to solve questions 1-6."""
+    """Solve questions 1-6."""
     # Define points
     A = (0, 0)
     B = (4, 0)

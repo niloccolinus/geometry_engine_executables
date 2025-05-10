@@ -59,6 +59,17 @@ def main():
     length_DF = distance(D, F)
     print(f"4. Length of segment DF: {length_DF:.2f}")
 
+    # --- Question 5 ---
+    # Point G lies along the x axis, on the same axis as points A, D and B
+    # Point G is such that line (FG) and line (BE) are parallel
+    # Using Thales's theorem to find G's coordinates
+    length_DB = distance(D, B)
+    length_DG = (length_DF / length_DE) * length_DB
+    length_AD = distance(A, D)
+    length_AG = length_AD + length_DG
+    G = (length_AG, 0)
+    print(f"5. Coordinates of point G : {G}")
+
     # Display using Renderer
     width, height = 800, 600
     renderer = Renderer(

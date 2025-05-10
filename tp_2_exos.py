@@ -180,6 +180,11 @@ def main():
         renderer.draw_point(f_x, f_y, color=(0, 255, 0), radius=4)
         renderer.draw_text("F", (f_x + 5, f_y - 20), font_size=24)
 
+        # Draw point G (magenta)
+        g_x, g_y = wp_to_screen(G)
+        renderer.draw_point(g_x, g_y, color=(255, 0, 255), radius=4)
+        renderer.draw_text("G", (g_x + 5, g_y - 20), font_size=24)
+
         # Extend the bisector far enough in its direction
         long_vector = bisector.multiply_by_scalar(100)
         delta_end = Vector2(D[0], D[1]).add(long_vector)

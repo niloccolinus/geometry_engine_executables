@@ -1,3 +1,5 @@
+"""Verify theoretical questions using our Triangle class."""
+
 import math
 
 from Mathy import Renderer, Triangle, Vector2
@@ -17,6 +19,7 @@ def midpoint(p1, p2):
 
 
 def main():
+    """Solve a series of geometry problems."""
     # Define points
     A = (0, 0)
     B = (4, 0)
@@ -60,9 +63,9 @@ def main():
     # Display using Renderer
     width, height = 800, 600
     renderer = Renderer(
-        width, 
-        height, 
-        "TP 2 - Visualization", 
+        width,
+        height,
+        "TP 2 - Visualization",
         bg_color=(255, 255, 255)
     )
 
@@ -70,9 +73,7 @@ def main():
     offset = (100, 400)
 
     def wp_to_screen(p):
-        """
-        Convert a 2D point (x, y) from world coordinates to screen coordinates.
-        """
+        """Convert a 2D point (x, y) from world to screen coordinates."""
         return (int(p[0] * scale + offset[0]), int(-p[1] * scale + offset[1]))
 
     def wc_to_screen(x, y):

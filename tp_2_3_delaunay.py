@@ -1,10 +1,14 @@
+"""Implement Delaunay triangulation."""
+
 import random
 from collections import Counter
 import pygame
 
-from Mathy import Renderer, Triangle, Vector2
+from Mathy import Renderer, Triangle
 
 # --- Algorithm functions ---
+
+
 def create_super_triangle(points) -> Triangle:
     """Create a super triangle that encompasses all points."""
     x_coords = [p[0] for p in points]
@@ -41,7 +45,7 @@ def delaunay_triangulation(points) -> list[Triangle]:
 
         # Edges that appear in the counter only once
         boundary_edges = [
-            edge for edge, 
+            edge for edge,
             count in edge_counter.items() if count == 1
         ]
 
@@ -56,8 +60,8 @@ def delaunay_triangulation(points) -> list[Triangle]:
 
     # Remove triangles that share vertices with the super triangle
     super_triangle_vertices = {
-        super_triangle.p1, 
-        super_triangle.p2, 
+        super_triangle.p1,
+        super_triangle.p2,
         super_triangle.p3
     }
     for triangle in list(triangulation):
@@ -68,27 +72,33 @@ def delaunay_triangulation(points) -> list[Triangle]:
 
     return list(triangulation)
 
+
 def generate_random_points(num_points: int) -> list[tuple]:
-    points = [(random.randint(50, 750), random.randint(50, 550)) for _ in range(num_points)]
+    """Generate a set of random points."""
+    points = [(random.randint(50, 750), random.randint(50, 550))
+              for _ in range(num_points)]
     return points
 
 # --- Code execution ---
+
+
 def main():
+    """Run Delunay triangulation."""
     # Defining random points
     num_points = 10
     points = generate_random_points(num_points)
-    render_circles = False # Set to True to render circumcircles
+    render_circles = False  # Set to True to render circumcircles
     key_to_randomize = pygame.K_SPACE
 
     # Display using Renderer
     width, height = 800, 600
     renderer = Renderer(
-        width, 
-        height, 
-        "TP 2 - Delaunay Triangulation", 
+        width,
+        height,
+        "TP 2 - Delaunay Triangulation",
         bg_color=(255, 255, 255)
     )
-    action_text = f"Press {pygame.key.name(key_to_randomize)} to randomize points"
+    action_text = f"Press {pygame.key.name(key_to_randomize)}to randomize points"  # noqa:E501
 
     def draw_triangulation(renderer, triangulation) -> None:
         """Draw the given triangulation on the renderer screen."""
@@ -127,11 +137,11 @@ def main():
                 color=(0, 255, 0),  # Green point
                 radius=4
             )
-        
-        # Draw action text
-        renderer.draw_text(action_text, (10, 10), font_size=20, color=(0, 0, 0))
-        renderer.update()
 
+        # Draw action text
+        renderer.draw_text(action_text, (10, 10),
+                           font_size=20, color=(0, 0, 0))
+        renderer.update()
 
     while renderer.running:
         do_render()
@@ -140,7 +150,8 @@ def main():
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
                 renderer.running = False
-            elif event.type == pygame.KEYDOWN and event.key == key_to_randomize:
+            elif (event.type == pygame.KEYDOWN
+                    and event.key == key_to_randomize):
                 # Randomize points when the key is pressed
                 renderer.clear()
                 points = generate_random_points(num_points)

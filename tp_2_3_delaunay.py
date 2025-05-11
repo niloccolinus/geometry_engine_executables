@@ -2,7 +2,8 @@ import random
 from collections import Counter
 import pygame
 
-from Mathy import Renderer, Triangle, Vector2
+from Mathy import Renderer, Triangle
+
 
 # --- Algorithm functions ---
 def create_super_triangle(points) -> Triangle:
@@ -68,9 +69,11 @@ def delaunay_triangulation(points) -> list[Triangle]:
 
     return list(triangulation)
 
+
 def generate_random_points(num_points: int) -> list[tuple]:
     points = [(random.randint(50, 750), random.randint(50, 550)) for _ in range(num_points)]
     return points
+
 
 # --- Code execution ---
 def main():

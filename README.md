@@ -23,6 +23,10 @@ Ce répertoire contient les scripts exécutables et les interfaces de démonstra
 
     Ce script résout et visualise un exercice de géométrie. 
 
+4. **tp_2_3_delaunay.py** - Calcule et visualise une triangulation de Delaunay
+
+    Ce script calcule la triangulation de Delaunay d'un ensemble de points aléatoires dans un plan. Il utilise l'algorithme de Bowyer-Watson pour construire la triangulation.
+
 ### Comment lancer les scripts
 
 1. **Avec Sublime Text (si vous utilisez ce programme)** :
@@ -35,6 +39,8 @@ Ce répertoire contient les scripts exécutables et les interfaces de démonstra
         `run_julia_viewer` : exécute julia_viewer.py
 
         `solve_exercises` : exécute tp_2_exos.py
+
+        `delaunay_triangulation` : exécute tp_2_3_delaunay.py
 
 2. **Sans Sublime Text (en utilisant le terminal)** :
     Vous pouvez également exécuter chaque script directement dans votre terminal. Pour chaque script, utilisez la commande suivante :

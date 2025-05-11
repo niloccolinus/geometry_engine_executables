@@ -1,3 +1,6 @@
+"""Visualize a Julia set."""
+
+
 import colorsys  # To use HSV colors
 import pygame
 from Mathy import Renderer
@@ -6,6 +9,7 @@ from Mathy import Renderer
 def julia(c: complex, z: complex, max_iter: int) -> int:
     """
     Return the number of iterations before divergence, or max_iter if bounded.
+
     A point is considered bounded if |zn| <= 2 after max_iter iterations.
     """
     for i in range(max_iter):
@@ -17,9 +21,7 @@ def julia(c: complex, z: complex, max_iter: int) -> int:
 
 def map_pixel_to_complex(x, y, width, height,
                          zoom=1.0, offset=(0.0, 0.0)) -> complex:
-    """
-    Maps a pixel (x, y) to a point in the complex plane.
-    """
+    """Map a pixel (x, y) to a point in the complex plane."""
     # Center and scale pixel (x, y)
     re = (x - width / 2) / (0.5 * zoom * width) + offset[0]
     im = (y - height / 2) / (0.5 * zoom * height) + offset[1]
@@ -27,9 +29,7 @@ def map_pixel_to_complex(x, y, width, height,
 
 
 def get_color(iteration: int, max_iter: int) -> tuple:
-    """
-    Returns a color based on the number of iterations.
-    """
+    """Return a color based on the number of iterations."""
     t = iteration / max_iter  # Normalized index to range [0, 1]
     # Hue from 0 to 1, full saturation and brightness
     hue = t % 1.0  # wrap around
@@ -42,9 +42,7 @@ def render_julia(renderer: Renderer,
                  max_iter=100,
                  zoom=1.0,
                  offset=(0.0, 0.0)):
-    """
-    Renders the Julia set, black if bounded, colored otherwise.
-    """
+    """Render the Julia set, black if bounded, colored otherwise."""
     width, height = renderer.width, renderer.height
 
     for x in range(width):
@@ -66,6 +64,7 @@ def render_julia(renderer: Renderer,
 
 
 def main():
+    """Run the Julia set viewer."""
     width, height = 800, 600
     renderer = Renderer(
         width, height,

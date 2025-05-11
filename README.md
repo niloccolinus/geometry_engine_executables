@@ -6,21 +6,6 @@ Ce répertoire contient les scripts exécutables et les interfaces de démonstra
 
 `geometry_engine_executables` propose des exemples concrets d'utilisation de la bibliothèque `geometry_engine_librairie`. Ces scripts permettent de résoudre et de visualiser des exercices géométriques. À ce jour, plusieurs scripts sont disponibles, chacun ayant un objectif spécifique. 
 
-### Comment lancer les scripts
-
-1. **Avec Sublime Text (si vous utilisez ce programme)** :
-   - Ouvrez le projet dans Sublime Text.
-   - Appuyez sur `Ctrl` + `Maj` + `B` (Windows/Linux) ou `Cmd` + `Maj` + `B` (Mac) pour ouvrir les commandes de compilation.
-   - Sélectionnez la commande correspondant au script que vous souhaitez exécuter.
-
-2. **Sans Sublime Text (en utilisant le terminal)** :
-    Vous pouvez également exécuter chaque script directement dans votre terminal. Pour chaque script, utilisez la commande suivante :
-    
-        python chemin_vers_le_script
-
-    Exemple :
-
-        python geometry_engine_executables/tp_0_ins.py
 
 ### Liste des scripts
 
@@ -38,9 +23,29 @@ Ce répertoire contient les scripts exécutables et les interfaces de démonstra
 
     Ce script résout et visualise un exercice de géométrie. 
 
+### Comment lancer les scripts
 
-## Dépendances
+1. **Avec Sublime Text (si vous utilisez ce programme)** :
+   - Ouvrez le projet dans Sublime Text.
+   - Appuyez sur `Ctrl` + `Maj` + `B` (Windows/Linux) ou `Cmd` + `Maj` + `B` (Mac) pour ouvrir les commandes de compilation.
+   - Sélectionnez l'une des commandes suivantes selon le script à exécuter :
 
-Ce projet utilise la bibliothèque pygame pour afficher les visualisations. Assurez-vous que cette bibliothèque est installée avant d'exécuter les scripts. Vous pouvez l'installer avec pip :
+        `hello_world_build` : exécute tp_0_ins.py
 
-    pip install pygame
+        `run_julia_viewer` : exécute julia_viewer.py
+
+        `solve_exercises` : exécute tp_2_exos.py
+
+2. **Sans Sublime Text (en utilisant le terminal)** :
+    Vous pouvez également exécuter chaque script directement dans votre terminal. Pour chaque script, utilisez la commande suivante :
+    
+        python chemin_vers_le_script
+
+    Exemple :
+
+        python geometry_engine_executables/tp_0_ins.py
+
+
+## Remarques
+
+Ce projet utilise la bibliothèque `pygame` pour l'affichage. Assurez-vous d’avoir suivi les instructions d’installation à la racine du projet ([README.md](../README.md)) pour que toutes les dépendances soient disponibles.

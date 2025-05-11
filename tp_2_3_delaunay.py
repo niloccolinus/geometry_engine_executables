@@ -6,9 +6,8 @@ import pygame
 
 from Mathy import Renderer, Triangle
 
+
 # --- Algorithm functions ---
-
-
 def create_super_triangle(points) -> Triangle:
     """Create a super triangle that encompasses all points."""
     x_coords = [p[0] for p in points]
@@ -79,9 +78,8 @@ def generate_random_points(num_points: int) -> list[tuple]:
               for _ in range(num_points)]
     return points
 
+
 # --- Code execution ---
-
-
 def main():
     """Run Delunay triangulation."""
     # Defining random points

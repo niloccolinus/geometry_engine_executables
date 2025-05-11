@@ -54,4 +54,4 @@ Ce répertoire contient les scripts exécutables et les interfaces de démonstra
 
 ## Remarques
 
-Ce projet utilise la bibliothèque `pygame` pour l'affichage. Assurez-vous d’avoir suivi les instructions d’installation à la racine du projet ([README.md](../README.md)) pour que toutes les dépendances soient disponibles.
+Ce projet utilise la bibliothèque `pygame` pour l'affichage. Assurez-vous d’avoir suivi les instructions d’installation à la racine du projet ([README.md](https://github.com/niloccolinus/geometry_engine/blob/main/README.md)) pour que toutes les dépendances soient disponibles.

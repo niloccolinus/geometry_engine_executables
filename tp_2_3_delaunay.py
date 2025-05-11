@@ -1,6 +1,7 @@
 import math
 import random
 from collections import Counter
+import pygame
 
 from Mathy import Renderer, Triangle, Vector2
 
@@ -60,12 +61,17 @@ def delaunay_triangulation(points) -> list[Triangle]:
 
     return list(triangulation)
 
+def generate_random_points(num_points: int) -> list[tuple]:
+    points = [(random.randint(50, 750), random.randint(50, 550)) for _ in range(num_points)]
+    return points
+
 # --- Code execution ---
 def main():
     # Defining random points
     num_points = 10
-    points = [(random.randint(50, 750), random.randint(50, 550)) for _ in range(num_points)]
+    points = generate_random_points(num_points)
     render_circles = False # Set to True to render circumcircles
+    key_to_randomize = pygame.K_SPACE
 
     # Display using Renderer
     width, height = 800, 600
@@ -75,6 +81,7 @@ def main():
         "TP 2 - Delaunay Triangulation", 
         bg_color=(255, 255, 255)
     )
+    action_text = f"Press {pygame.key.name(key_to_randomize)} to randomize points"
 
     def draw_triangulation(renderer, triangulation) -> None:
         """Draw the given triangulation on the renderer screen."""
@@ -100,10 +107,7 @@ def main():
             width=1
         )
 
-    while renderer.running:
-        renderer.handle_events()
-        renderer.clear((255, 255, 255))
-
+    def do_render() -> None:
         # Perform triangulation and draw it
         triangulation = delaunay_triangulation(points)
         draw_triangulation(renderer, triangulation)
@@ -116,6 +120,25 @@ def main():
                 color=(0, 255, 0), # Green point
                 radius=4
             )
+        
+        # Draw action text
+        renderer.draw_text(action_text, (10, 10), font_size=20, color=(0, 0, 0))
+        renderer.update()
+
+
+    while renderer.running:
+        do_render()
+
+        # Event loop to handle window events and key presses
+        for event in pygame.event.get():
+            if event.type == pygame.QUIT:
+                renderer.running = False
+            elif event.type == pygame.KEYDOWN and event.key == key_to_randomize:
+                # Randomize points when the key is pressed
+                renderer.clear()
+                points = generate_random_points(num_points)
+                do_render()
+                continue
 
         renderer.update()
         renderer.clock.tick(60)

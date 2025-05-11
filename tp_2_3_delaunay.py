@@ -1,8 +1,8 @@
-import math
 import random
 from collections import Counter
 
-from Mathy import Renderer, Triangle, Vector2
+from Mathy import Renderer, Triangle
+
 
 # --- Algorithm functions ---
 def create_super_triangle(points) -> Triangle:
@@ -14,6 +14,7 @@ def create_super_triangle(points) -> Triangle:
         (max(x_coords) * 2, 0),
         (0, max(y_coords) * 2)
     )
+
 
 def delaunay_triangulation(points) -> list[Triangle]:
     """Perform Delaunay triangulation on a set of points."""
@@ -39,7 +40,10 @@ def delaunay_triangulation(points) -> list[Triangle]:
                 edge_counter[tuple(sorted(edge))] += 1
 
         # Edges that appear in the counter only once
-        boundary_edges = [edge for edge, count in edge_counter.items() if count == 1]
+        boundary_edges = [
+            edge for edge, 
+            count in edge_counter.items() if count == 1
+        ]
 
         # Remove bad triangles from the triangulation
         for triangle in bad_triangles:
@@ -51,7 +55,11 @@ def delaunay_triangulation(points) -> list[Triangle]:
             triangulation.add(new_triangle)
 
     # Remove triangles that share vertices with the super triangle
-    super_triangle_vertices = {super_triangle.p1, super_triangle.p2, super_triangle.p3}
+    super_triangle_vertices = {
+        super_triangle.p1, 
+        super_triangle.p2, 
+        super_triangle.p3
+    }
     for triangle in list(triangulation):
         if (triangle.p1 in super_triangle_vertices or
                 triangle.p2 in super_triangle_vertices or
@@ -60,12 +68,15 @@ def delaunay_triangulation(points) -> list[Triangle]:
 
     return list(triangulation)
 
+
 # --- Code execution ---
 def main():
     # Defining random points
     num_points = 10
-    points = [(random.randint(50, 750), random.randint(50, 550)) for _ in range(num_points)]
-    render_circles = False # Set to True to render circumcircles
+    points = [(
+        random.randint(50, 750), random.randint(50, 550)
+        ) for _ in range(num_points)]
+    render_circles = False  # Set to True to render circumcircles
 
     # Display using Renderer
     width, height = 800, 600
@@ -113,7 +124,7 @@ def main():
             renderer.draw_point(
                 point[0],
                 point[1],
-                color=(0, 255, 0), # Green point
+                color=(0, 255, 0),  # Green point
                 radius=4
             )
 
@@ -121,6 +132,7 @@ def main():
         renderer.clock.tick(60)
 
     renderer.quit()
+
 
 if __name__ == "__main__":
     main()

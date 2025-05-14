@@ -1,7 +1,5 @@
 """Verify theoretical questions using our Triangle class."""
 
-import math
-
 from Mathy import Renderer, Triangle, Vector2
 
 
@@ -10,7 +8,7 @@ def distance(p1, p2):
     """Return the Euclidean distance between two 2D points."""
     dx = p1[0] - p2[0]
     dy = p1[1] - p2[1]
-    return math.sqrt(dx**2 + dy**2)
+    return (dx**2 + dy**2) ** 0.5
 
 
 def midpoint(p1, p2):

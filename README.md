@@ -14,18 +14,22 @@ Ce répertoire contient les scripts exécutables et les interfaces de démonstra
     Ce script est un simple exemple pour tester si l'environnement est correctement configuré. Il affiche "Hello World" dans le terminal.
 
 
-2. **julia_viewer.py** - Visualisation de l'ensemble de Julia
+2. **tp_1_julia.py** - Visualisation de l'ensemble de Julia
 
     Ce script permet de visualiser l'ensemble de Julia, une structure fractale complexe. L'ensemble de Julia est généré en fonction d'un nombre complexe donné, et chaque pixel de l'écran est colorié en fonction de la divergence ou non de la suite complexe associée à ce pixel.
 
 
-3. **tp_2_exos.py** - Résout et visualise plusieurs exercices géométriques
+3. **tp_2_exos.py** - Résout et visualise un exercice géométrique
 
     Ce script résout et visualise un exercice de géométrie. 
 
-4. **tp_2_3_delaunay.py** - Calcule et visualise une triangulation de Delaunay
+4. **tp_2_delaunay.py** - Calcule et visualise une triangulation de Delaunay
 
     Ce script calcule la triangulation de Delaunay d'un ensemble de points aléatoires dans un plan. Il utilise l'algorithme de Bowyer-Watson pour construire la triangulation.
+
+5. **tp_3_exo1.py** - Implémentation et visualisation des transformations homogènes
+
+    Ce script illustre l’utilisation des classes de transformation homogène (translation, rotation, homothétie) en combinant ces transformations sur un personnage et son épée. Il applique ces transformations et affiche les résultats dans la console.
 
 ### Comment lancer les scripts
 
@@ -34,13 +38,15 @@ Ce répertoire contient les scripts exécutables et les interfaces de démonstra
    - Appuyez sur `Ctrl` + `Maj` + `B` (Windows/Linux) ou `Cmd` + `Maj` + `B` (Mac) pour ouvrir les commandes de compilation.
    - Sélectionnez l'une des commandes suivantes selon le script à exécuter :
 
-        `hello_world_build` : exécute tp_0_ins.py
+        `tp_0_ins` : exécute tp_0_ins.py
 
-        `run_julia_viewer` : exécute julia_viewer.py
+        `tp_1_julia` : exécute tp_1_julia.py
 
-        `solve_exercises` : exécute tp_2_exos.py
+        `tp_2_exos` : exécute tp_2_exos.py
 
-        `delaunay_triangulation` : exécute tp_2_3_delaunay.py
+        `tp_2_delaunay` : exécute tp_2_delaunay.py
+
+        `tp_3_exo1` : exécute tp_3_exo1.py
 
 2. **Sans Sublime Text (en utilisant le terminal)** :
     Vous pouvez également exécuter chaque script directement dans votre terminal. Pour chaque script, utilisez la commande suivante :

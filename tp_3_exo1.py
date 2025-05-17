@@ -42,9 +42,8 @@ final_transform = global_transform.prod(local_sword_transform)
 print("\nQuestion 5 - Final transformation matrix:")
 print(final_transform)
 
-# The sword coordinates are the two first numbers in the last column
-x_coord = final_transform.matrix[0][2]
-y_coord = final_transform.matrix[1][2]
-sword_world_position = Vector3(x_coord, y_coord, 1)
+# Apply the final transformation to the origin of the sword's local frame 
+# to get its position in world coordinates
+sword_world_position = Vector3(0, 0, 1).multiply_by_matrix(final_transform)
 print("\nSword world coordinates after full transformation:")
 print(sword_world_position)

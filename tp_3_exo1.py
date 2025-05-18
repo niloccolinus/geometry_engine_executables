@@ -29,7 +29,8 @@ sword_translation = TranslationMatrix3x3(0.5, -0.5)
 sword_rotation = RotationMatrix3x3(180)
 local_sword_transform = sword_translation.prod(sword_rotation)
 print("\nQuestion 4 - Local sword transformation matrix (Translation(0.5, -0.5) * Rotation(180°)):")  # noqa: E501
-print(local_sword_transform)
+# Round the result for small floating point errors
+print(local_sword_transform.round(9))
 
 # --- Question 5 ---
 # Compose the global transformation (translation * rotation * homothety)

@@ -31,6 +31,10 @@ Ce répertoire contient les scripts exécutables et les interfaces de démonstra
 
     Ce script illustre l’utilisation des classes de transformation homogène (translation, rotation, homothétie) en combinant ces transformations sur un personnage et son épée. Il applique ces transformations et affiche les résultats dans la console.
 
+6. **tp_3_exo3.py** - Visualisation de cercles en orbite
+
+    Ce script illustre l’utilisation des classes de similitudes (translation, rotation) en coordonnées homogènes, en simulant la trajectoire de 2 cercles en orbite autour d'un troisième cercle, lui même en rotation autour de l'origine du repère. Ces trajectoires sont visualisables grâce à la classe renderer.py et la bibliothèque pygame.
+
 ### Comment lancer les scripts
 
 1. **Avec Sublime Text (si vous utilisez ce programme)** :

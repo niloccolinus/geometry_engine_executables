@@ -61,26 +61,20 @@ def main():
     theta = 8  # rotation angle in degrees
 
     # Values to represent circle C1
-    D1 = 10  # distance between center of circle and center of C
+    D1 = 70  # distance between center of circle and center of C
     r1 = 10  # radius of circle
     T1 = 4  # rotation period in seconds
     omega1 = 360 / T1  # angular velocity
     theta1 = 8  # rotation angle in degrees
-    # Define the local translation matrix
-    translation1 = TranslationMatrix3x3(D1, 0)
-    # Deduce the local coordinates of circle C1's center with M as the origin
-    M1 = M.multiply_by_matrix(translation1)
+    M1 = HomogeneousVector3(D1, 0)  # local coordinates of C1 center
 
     # Values to represent circle C2
-    D2 = 5  # distance between center of circle and center of C
+    D2 = 100  # distance between center of circle and center of C
     r2 = 5  # radius of circle
     T2 = 2  # rotation period in seconds
     omega2 = 360 / T2  # angular velocity
     theta2 = 8  # rotation angle in degrees
-    # Define the local translation matrix
-    translation2 = TranslationMatrix3x3(D2, 0)
-    # Deduce the local coordinates of circle C2's center with M as the origin
-    M2 = M.multiply_by_matrix(translation2)
+    M2 = HomogeneousVector3(D2, 0)  # local coordinates of C2 center
 
     # Display using Renderer
     width, height = 600, 600

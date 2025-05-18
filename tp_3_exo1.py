@@ -1,3 +1,5 @@
+"""Use our implementation of similarities to solve math questions."""
+
 from Mathy import (
     Vector3,
     TranslationMatrix3x3,
@@ -43,7 +45,7 @@ final_transform = global_transform.prod(local_sword_transform)
 print("\nQuestion 5 - Final transformation matrix:")
 print(final_transform)
 
-# Apply the final transformation to the origin of the sword's local frame 
+# Apply the final transformation to the origin of the sword's local frame
 # to get its position in world coordinates
 sword_world_position = Vector3(0, 0, 1).multiply_by_matrix(final_transform)
 print("\nSword world coordinates after full transformation:")

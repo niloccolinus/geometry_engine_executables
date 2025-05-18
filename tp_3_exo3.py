@@ -69,7 +69,7 @@ def main():
     # Define the local translation matrix
     translation1 = TranslationMatrix3x3(D1, 0)
     # Deduce the local coordinates of circle C1's center with M as the origin
-    M1 = HomogeneousVector3(M.x, M.y).multiply_by_matrix(translation1)
+    M1 = M.multiply_by_matrix(translation1)
 
     # Values to represent circle C2
     D2 = 5  # distance between center of circle and center of C
@@ -80,7 +80,7 @@ def main():
     # Define the local translation matrix
     translation2 = TranslationMatrix3x3(D2, 0)
     # Deduce the local coordinates of circle C2's center with M as the origin
-    M2 = HomogeneousVector3(M.x, M.y).multiply_by_matrix(translation2)
+    M2 = M.multiply_by_matrix(translation2)
 
     # Display using Renderer
     width, height = 600, 600

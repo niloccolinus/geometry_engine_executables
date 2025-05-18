@@ -143,6 +143,25 @@ def main():
         renderer.draw_circle((int(m2_screen.x), int(m2_screen.y)), r2,
                              color=(0, 0, 255))
 
+        # Caption for circle C
+        renderer.draw_text(
+            "C: red circle",
+            (screen_origin.x + 100, screen_origin.y + 200),
+            font_size=18
+        )
+        # Caption for circle C1
+        renderer.draw_text(
+            "C1: green circle",
+            (screen_origin.x + 100, screen_origin.y + 225),
+            font_size=18
+        )
+        # Caption for circle C2
+        renderer.draw_text(
+            "C2: blue circle",
+            (screen_origin.x + 100, screen_origin.y + 250),
+            font_size=18
+        )
+
         renderer.update()
 
     renderer.quit()

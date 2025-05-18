@@ -24,11 +24,6 @@ print("\nQuestion 3 - Homothety matrix (scaling by factor of 2):")
 print(homothety)
 
 # --- Question 4 ---
-# Compose the global transformation (translation * rotation * homothety)
-global_transform = translation.prod(rotation).prod(homothety)
-print("\nComposed global transformation matrix (Translation * Rotation * Homothety):")  # noqa: E501
-print(global_transform)
-
 # Define the local transformation of the sword
 sword_translation = TranslationMatrix3x3(0.5, -0.5)
 sword_rotation = RotationMatrix3x3(180)
@@ -37,6 +32,11 @@ print("\nQuestion 4 - Local sword transformation matrix (Translation(0.5, -0.5) 
 print(local_sword_transform)
 
 # --- Question 5 ---
+# Compose the global transformation (translation * rotation * homothety)
+global_transform = translation.prod(rotation).prod(homothety)
+print("\nQuestion 5 - Composed global transformation matrix (Translation * Rotation * Homothety):")  # noqa: E501
+print(global_transform)
+
 # Apply the full transformation to the sword's local position
 final_transform = global_transform.prod(local_sword_transform)
 print("\nQuestion 5 - Final transformation matrix:")

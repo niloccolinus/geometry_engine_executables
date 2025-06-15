@@ -10,6 +10,7 @@ from Mathy import (
 
 
 def main():
+    """Render a cube on screen."""
     cube = Cube()
     cube_world = cube.renderer.convert_local_to_world(cube)
     camera = Camera(

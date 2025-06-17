@@ -35,6 +35,10 @@ Ce répertoire contient les scripts exécutables et les interfaces de démonstra
 
     Ce script illustre l’utilisation des classes de similitudes (translation, rotation) en coordonnées homogènes, en simulant la trajectoire de 2 cercles en orbite autour d'un troisième cercle, lui même en rotation autour de l'origine du repère. Ces trajectoires sont visualisables grâce à la classe renderer.py et la bibliothèque pygame.
 
+7. **tp_4_rendercube.py** - Implémentation d'une pipeline de rendu simplifiée.
+
+   Ce script utilise des notions de géométrie spatiale pour afficher un cube en 3D.
+
 ### Comment lancer les scripts
 
 1. **Avec Sublime Text (si vous utilisez ce programme)** :
@@ -51,6 +55,8 @@ Ce répertoire contient les scripts exécutables et les interfaces de démonstra
         `tp_2_delaunay` : exécute tp_2_delaunay.py
 
         `tp_3_exo1` : exécute tp_3_exo1.py
+
+        `tp_4_rendercube` : exécute tp_4_rendercube.py
 
 2. **Sans Sublime Text (en utilisant le terminal)** :
     Vous pouvez également exécuter chaque script directement dans votre terminal. Pour chaque script, utilisez la commande suivante :

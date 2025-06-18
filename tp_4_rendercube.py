@@ -35,7 +35,15 @@ def main():
     while renderer.running:
         renderer.handle_events()
         renderer.clear()
+        i = 0
         for vertex in cube_vertices_screen:
+            i += 1
+            alphabet = ["", "A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P"]
+            renderer.draw_text(
+                f"{alphabet[i]}",
+                (vertex.x + 5, vertex.y + 5),
+                font_size=(14)
+            )
             renderer.draw_point(vertex.x, vertex.y, color=(0, 0, 0))
         for i in range(0, len(cube.indices) - 1, 2):
             start = (cube_vertices_screen[cube.indices[i]].x,

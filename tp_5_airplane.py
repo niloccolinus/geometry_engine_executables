@@ -1,4 +1,4 @@
-"""Render an airplane 3D model."""
+"""Render a 3D model of an airplane."""
 
 from Mathy import (
     Airplane,
@@ -17,7 +17,7 @@ def render_object(game_object: GameObject,
                   projection: Projection,
                   renderer: Renderer,
                   angle_deg: float):
-    """Apply successive operations to render a 3D cube on a 2D screen."""
+    """Apply successive operations to render a 3D object on a 2D screen."""
     game_object.transform = game_object.transform.__class__()
 
     # Apply rotation on y axis
@@ -35,11 +35,11 @@ def render_object(game_object: GameObject,
         projection
     )
 
-    # Display points and labels
-    for i, vertex in enumerate(game_object_vertices_screen, start=1):
+    # Display vertices
+    for vertex in game_object_vertices_screen:
         renderer.draw_point(vertex.x, vertex.y, (0, 0, 0))
 
-    # Display edges
+    # Display edges by drawing triangles between vertices
     for i in range(0, len(game_object.indices) - 1, 3):
         p1 = (game_object_vertices_screen[game_object.indices[i]].x,
               game_object_vertices_screen[game_object.indices[i]].y)
@@ -55,7 +55,7 @@ def main():
     airplane = Airplane()
 
     camera = Camera(
-        position=Vector3(3, 0, 5),
+        position=Vector3(10, 2, -5),
         target=Vector3(0, 0, 0),
         up=Vector3(0, 1, 0)
     )

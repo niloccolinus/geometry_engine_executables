@@ -39,6 +39,10 @@ Ce répertoire contient les scripts exécutables et les interfaces de démonstra
 
    Ce script utilise des notions de géométrie spatiale pour afficher un cube en 3D.
 
+8. **tp_5_airplane.py** - Affichage d'un avion en 3D.
+
+   Ce script reprend le pipeline réalisé précédemment pour afficher un modèle d'avion.
+
 ### Comment lancer les scripts
 
 1. **Avec Sublime Text (si vous utilisez ce programme)** :
@@ -57,6 +61,8 @@ Ce répertoire contient les scripts exécutables et les interfaces de démonstra
         `tp_3_exo1` : exécute tp_3_exo1.py
 
         `tp_4_rendercube` : exécute tp_4_rendercube.py
+
+        `tp_5_airplane` : exécute tp_5_airplane.py
 
 2. **Sans Sublime Text (en utilisant le terminal)** :
     Vous pouvez également exécuter chaque script directement dans votre terminal. Pour chaque script, utilisez la commande suivante :

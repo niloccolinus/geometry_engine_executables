@@ -30,7 +30,7 @@ def main():
 
     # --- Question 1 ---
     # Check if C lies on the circle
-    on_circle = dist_C == radius
+    on_circle = abs(dist_C - radius) < 1e-9
     print(f"1. C belongs to the circle of diameter AB: {on_circle}")
 
     # --- Question 2 ---

@@ -44,7 +44,7 @@ def main():
         cube.transform.rotate_quaternion(q)
 
         # Apply new transform
-        cube_world = cube.renderer.convert_local_to_world(cube)
+        cube_world, triangles_world = cube.renderer.convert_local_to_world(cube)
 
         # Project to screen
         cube_vertices_screen = cube.renderer.project_vertices(
@@ -52,6 +52,30 @@ def main():
             camera,
             projection
         )
+
+        # Draw triangles
+        for triangle in triangles_world:
+            p1 = cube.renderer.project_vertices(
+                [triangle.pa],
+                camera,
+                projection
+            )[0]
+            p2 = cube.renderer.project_vertices(
+                [triangle.pb],
+                camera,
+                projection
+            )[0]
+            p3 = cube.renderer.project_vertices(
+                [triangle.pc],
+                camera,
+                projection
+            )[0]
+            renderer.draw_triangle(
+                (p1.x, p1.y),
+                (p2.x, p2.y),
+                (p3.x, p3.y),
+                color=(0.5, 0.5, 0.5)
+            ) # todo : z-buffering
 
         # Display points and labels
         for i, vertex in enumerate(cube_vertices_screen, start=1):
@@ -62,14 +86,6 @@ def main():
                 font_size=14
             )
             renderer.draw_point(vertex.x, vertex.y, color=(0, 0, 0))
-
-        # Display edges
-        for i in range(0, len(cube.indices) - 1, 2):
-            start = (cube_vertices_screen[cube.indices[i]].x,
-                     cube_vertices_screen[cube.indices[i]].y)
-            end = (cube_vertices_screen[cube.indices[i + 1]].x,
-                   cube_vertices_screen[cube.indices[i + 1]].y)
-            renderer.draw_segment(start, end, color=(0, 0, 0), width=2)
 
         renderer.update()
         renderer.clock.tick(60)

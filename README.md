@@ -43,6 +43,10 @@ Ce répertoire contient les scripts exécutables et les interfaces de démonstra
 
    Ce script reprend le pipeline réalisé précédemment pour afficher un modèle d'avion.
 
+   **tp_6_two-airplanes.py** - Affichage de deux avions en 3D.
+
+   Ce script reprend le pipeline réalisé précédemment pour afficher deux modèles d'avion avec une rotation : l'une utilisant les angles d'Euler, et l'autre uilisant les quaternions.
+
 ### Comment lancer les scripts
 
 1. **Avec Sublime Text (si vous utilisez ce programme)** :
@@ -63,6 +67,8 @@ Ce répertoire contient les scripts exécutables et les interfaces de démonstra
         `tp_4_rendercube` : exécute tp_4_rendercube.py
 
         `tp_5_airplane` : exécute tp_5_airplane.py
+
+        `tp_6_two-airplanes` : exécute tp_6_two-airplanes.py
 
 2. **Sans Sublime Text (en utilisant le terminal)** :
     Vous pouvez également exécuter chaque script directement dans votre terminal. Pour chaque script, utilisez la commande suivante :

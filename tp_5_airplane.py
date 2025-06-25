@@ -26,43 +26,17 @@ def render_object(game_object: GameObject,
     game_object.transform.rotate_quaternion(q)
 
     # Apply new transform
-    game_object_world, triangles_world = game_object.renderer.convert_local_to_world(game_object)  # noqa: E501
+    triangles_world = game_object.renderer.convert_local_to_world(game_object)  # noqa: E501
 
-    # Project to screen
-    game_object_vertices_screen = game_object.renderer.project_vertices(
-        game_object_world,
-        camera,
-        projection
-    )
-
-    # Display vertices
-    for vertex in game_object_vertices_screen:
-        renderer.draw_point(vertex.x, vertex.y, (0, 0, 0))
-
-    # Draw triangles
+    # Draw triangles in world space
     for triangle in triangles_world:
-        p1 = game_object.renderer.project_vertices(
-            [triangle.pa],
-            camera,
-            projection
-        )[0]
-        p2 = game_object.renderer.project_vertices(
-            [triangle.pb],
-            camera,
-            projection
-        )[0]
-        p3 = game_object.renderer.project_vertices(
-            [triangle.pc],
-            camera,
-            projection
-        )[0]
-        renderer.draw_triangle(
-            (p1.x, p1.y),
-            (p2.x, p2.y),
-            (p3.x, p3.y),
-            color=(0.5, 0.5, 0.5)
-        ) # todo : z-buffering
-
+        game_object.renderer.draw_2d_triangle(
+                triangle,
+                camera,
+                projection,
+                renderer
+        )
+        
 def main():
     """Render an airplane on screen."""
     airplane = Airplane()
@@ -84,9 +58,12 @@ def main():
     renderer = Renderer(width=800, height=600)
     angle_deg = 0
 
+    airplane.renderer.set_mesh_data(airplane)
+    
     while renderer.running:
         renderer.handle_events()
         renderer.clear()
+        airplane.renderer.clear_z_buffer()
 
         render_object(airplane, camera, projection, renderer, angle_deg)
 

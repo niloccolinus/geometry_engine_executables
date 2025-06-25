@@ -36,7 +36,8 @@ def render_object(game_object: GameObject,
                 projection,
                 renderer
         )
-        
+
+
 def main():
     """Render an airplane on screen."""
     airplane = Airplane()
@@ -59,7 +60,7 @@ def main():
     angle_deg = 0
 
     airplane.renderer.set_mesh_data(airplane)
-    
+
     while renderer.running:
         renderer.handle_events()
         renderer.clear()

@@ -96,7 +96,7 @@ def main():
         airplane1.renderer.clear_z_buffer()
         airplane2.renderer.clear_z_buffer()
 
-        render_object_quaternion(airplane1, camera, projection, renderer, angle_deg)
+        render_object_euler(airplane1, camera, projection, renderer, angle_deg)
         render_object_quaternion(airplane2, camera, projection, renderer, angle_deg)
 
         renderer.update()

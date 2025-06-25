@@ -3,11 +3,13 @@
 from Mathy import (
     Cube,
     Camera,
+    gengar_tex,
     Vector3,
     Projection,
     Renderer,
     Quaternion,
-    deg_to_rad
+    deg_to_rad,
+    barycentric_coordinates
 )
 
 
@@ -31,10 +33,12 @@ def main():
 
     renderer = Renderer(width=800, height=600)
     angle_deg = 0
+    cube.renderer.set_mesh_data(cube)
 
     while renderer.running:
         renderer.handle_events()
         renderer.clear()
+        cube.renderer.clear_z_buffer()
 
         cube.transform = cube.transform.__class__()
 
@@ -44,32 +48,19 @@ def main():
         cube.transform.rotate_quaternion(q)
 
         # Apply new transform
-        cube_world = cube.renderer.convert_local_to_world(cube)
+        triangles_world = cube.renderer.convert_local_to_world(cube)
 
-        # Project to screen
-        cube_vertices_screen = cube.renderer.project_vertices(
-            cube_world,
-            camera,
-            projection
-        )
-
-        # Display points and labels
-        for i, vertex in enumerate(cube_vertices_screen, start=1):
-            alphabet = ["", "A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P"]  # noqa: E501
-            renderer.draw_text(
-                f"{alphabet[i]}",
-                (vertex.x + 5, vertex.y + 5),
-                font_size=14
+        # Draw triangles
+        for triangle in triangles_world:
+            cube.renderer.draw_2d_triangle(
+                triangle,
+                camera,
+                projection,
+                renderer
             )
-            renderer.draw_point(vertex.x, vertex.y, color=(0, 0, 0))
-
-        # Display edges
-        for i in range(0, len(cube.indices) - 1, 2):
-            start = (cube_vertices_screen[cube.indices[i]].x,
-                     cube_vertices_screen[cube.indices[i]].y)
-            end = (cube_vertices_screen[cube.indices[i + 1]].x,
-                   cube_vertices_screen[cube.indices[i + 1]].y)
-            renderer.draw_segment(start, end, color=(0, 0, 0), width=2)
+        # # Display points
+        # for i, vertex in enumerate(cube_vertices_screen, start=1):
+        #     renderer.draw_point(vertex.x, vertex.y, color=(0, 0, 0))
 
         renderer.update()
         renderer.clock.tick(60)

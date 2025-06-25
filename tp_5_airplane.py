@@ -23,6 +23,8 @@ def render_object(game_object: GameObject,
     # Apply rotation on y axis
     angle_rad = deg_to_rad(angle_deg)
     q = Quaternion.euler_to_quaternion(0, angle_rad, 0)
+    # game_object.transform.rotate_quaternion(q)
+    q.slerp(Quaternion(0, 0, 270, 0), 0.5)
     game_object.transform.rotate_quaternion(q)
 
     # Apply new transform
